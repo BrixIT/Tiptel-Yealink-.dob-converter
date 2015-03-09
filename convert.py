@@ -47,11 +47,17 @@ def dob_to_png(args):
 
 def img_to_dob(args):
     canvas = Image.open(args.input)
+    canvas.load()
+    if canvas.mode == "RGBA":
+        print("Input file has alpha channel, filling with white")
+        temp = canvas
+        canvas = Image.new("RGB", temp.size, (255, 255, 255))
+        canvas.paste(temp, mask=temp.split()[3])
     if args.preset is not None:
         preset = presets[args.preset]
         canvas.thumbnail(preset, Image.LANCZOS)
+    print("Output format: {}x{}".format(canvas.size[0], canvas.size[1]))
     canvas = canvas.convert(mode="L")
-    canvas.show()
     args.output.write(struct.pack("BB", canvas.size[0], canvas.size[1]))
     pixels = []
 
