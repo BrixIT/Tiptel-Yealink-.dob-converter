@@ -3,6 +3,8 @@
 This tool converts images to .dob files to use as logo in Tiptel and Yealink phones. All images will be converted
 to 16 level grayscale (The phones support more than the 2 level grayscale mentioned in the manual)
 
+![Example](http://brixit.nl/sites/brixit.nl/files/tiptel.png)
+
 ## Supported phones
 
 - Tiptel IP 286
